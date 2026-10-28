@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVM Grievance Portal - All-in-One App</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Symbols Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff4ff',
+              100: '#dbe6fe',
+              200: '#cbdbf5',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              800: '#1e3a8a',
+              900: '#1b365d',
+              dark: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0f172a;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Hide scrollbar for tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+  <!-- Mobile Viewport Frame Container -->
+  <div class="relative w-full max-w-[430px] min-h-screen sm:min-h-[880px] sm:max-h-[920px] bg-[#f8f9ff] text-slate-800 shadow-2xl sm:rounded-3xl flex flex-col overflow-hidden border border-slate-700/50">
+
+    <!-- Top App Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-xs">
+      <div class="flex items-center space-x-2.5">
+        <button id="backBtn" onclick="switchView('dashboard')" class="hidden p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-[22px]">arrow_back</span>
+        </button>
+        <div class="w-8 h-8 rounded-lg bg-blue-900 text-white flex items-center justify-center font-bold text-base shadow-sm">
+          <span class="material-symbols-outlined text-[20px]">account_balance</span>
+        </div>
+        <div>
+          <h1 class="text-sm font-bold tracking-tight text-blue-950 flex items-center gap-1.5">
+            MVM Grievance Portal
+          </h1>
+          <p id="topBarSubtitle" class="text-[11px] font-medium text-slate-500">MVM College • Student Redressal</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-1">
+        <button onclick="alert('No unread notifications at this time.')" class="relative p-2 rounded-full text-slate-600 hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Scrollable Main Content Area -->
+    <main class="flex-1 overflow-y-auto no-scrollbar pb-24">
+
+      <!-- ============================================== -->
+      <!-- VIEW 1: STUDENT DASHBOARD                     -->
+      <!-- ============================================== -->
+      <section id="view-dashboard" class="p-4 space-y-4">
+        <!-- Student Profile Card -->
+        <div class="bg-white rounded-2xl p-4 border border-blue-100 shadow-sm flex items-start gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-2xl">school</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h2 class="font-bold text-slate-900 text-base">Rahul Sharma</h2>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="material-symbols-outlined text-[13px] filled">verified</span> Verified
+              </span>
+            </div>
+            <p class="text-xs text-blue-900 font-semibold mt-0.5">Roll: MVM-2023-CS042</p>
+            <p class="text-xs text-slate-500">B.Sc Computer Science • Sem IV</p>
+          </div>
+        </div>
+
+        <!-- Zero-Retaliation Hero Card -->
+        <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 text-white rounded-2xl p-4.5 p-4 shadow-md relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-blue-500/10 rounded-full blur-xl pointer-events-none"></div>
+          <div class="flex items-center gap-2 mb-2 text-blue-200">
+            <span class="material-symbols-outlined text-sm">shield</span>
+            <span class="text-[11px] font-semibold uppercase tracking-wider">Zero-Retaliation Protection</span>
+          </div>
+          <h3 class="text-base font-bold leading-snug">Have a personal or campus concern? File with complete safety.</h3>
+          <p class="text-xs text-blue-100/80 mt-1.5 leading-relaxed">
+            Encrypted handling by the Grievance & Student Welfare Cell. You can submit openly or under full anonymous seal.
+          </p>
+          <div class="mt-3.5 flex gap-2">
+            <button onclick="switchView('lodge')" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold transition shadow-sm">
+              <span class="material-symbols-outlined text-[17px]">add_circle</span> Lodge New Grievance
+            </button>
+            <button onclick="switchView('track')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur transition">
+              <span class="material-symbols-outlined text-[17px]">track_changes</span> Track #8842
+            </button>
+          </div>
+        </div>
+
+        <!-- Triage Summary Grid -->
+        <div>
+          <div class="flex items-center justify-between mb-2 px-1">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-blue-600">bar_chart</span> Grievance Triage Overview
+            </h3>
+            <span class="text-[11px] text-blue-800 font-semibold bg-blue-50 px-2 py-0.5 rounded-full">Academic Year 2024</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-black text-slate-900">4</span>
+                <p class="text-xs text-slate-500 font-medium">Total Lodged</p>
+              </div>
+              <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">folder_open</span>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-black text-blue-600">1</span>
+                <p class="text-xs text-slate-500 font-medium">In Progress</p>
+              </div>
+              <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">sync</span>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-black text-amber-600">1</span>
+                <p class="text-xs text-slate-500 font-medium">Under Review</p>
+              </div>
+              <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-black text-emerald-600">2</span>
+                <p class="text-xs text-slate-500 font-medium">Resolved</p>
+              </div>
+              <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">check_circle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs">
+          <button class="px-3 py-1.5 rounded-full bg-blue-900 text-white font-semibold whitespace-nowrap shadow-xs">All Concerns</button>
+          <button class="px-3 py-1.5 rounded-full bg-white text-slate-600 font-medium border border-slate-200 hover:bg-slate-50 whitespace-nowrap">Academic</button>
+          <button class="px-3 py-1.5 rounded-full bg-white text-slate-600 font-medium border border-slate-200 hover:bg-slate-50 whitespace-nowrap">Personal & Harassment</button>
+          <button class="px-3 py-1.5 rounded-full bg-white text-slate-600 font-medium border border-slate-200 hover:bg-slate-50 whitespace-nowrap">Hostel & Amenities</button>
+        </div>
+
+        <!-- Active Complaints Cards -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-center px-1">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">My Active Grievances</h3>
+            <span class="text-xs text-blue-700 font-semibold cursor-pointer">View Historical (4)</span>
+          </div>
+
+          <!-- Card 1: Under Review (Links to Track Screen) -->
+          <div onclick="switchView('track')" class="bg-white rounded-2xl p-4 border border-blue-200 shadow-xs hover:border-blue-400 transition cursor-pointer relative group">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-blue-900 bg-blue-50 px-2 py-0.5 rounded-md font-mono">#MVM-GR-8842</span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Under Review
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm group-hover:text-blue-700 transition">Discrepancy in Internal Assessment & Lab Marks</h4>
+            <p class="text-xs text-slate-500 mt-1 line-clamp-2">Clarification submitted regarding external moderation formula and lab practical logbook marks.</p>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span class="flex items-center gap-1 text-slate-700 font-medium">
+                <span class="material-symbols-outlined text-[15px] text-blue-800">supervisor_account</span> HOD CS Dept
+              </span>
+              <span class="text-amber-700 font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">timer</span> SLA: ~2 Days
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 2: In Progress -->
+          <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md font-mono">#MVM-GR-8819</span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> In Progress
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Hostel Block-B Hot Water & Water Cooler Maintenance</h4>
+            <p class="text-xs text-slate-500 mt-1">Solar boiler pressure fault in Wing 2. Maintenance team requested part requisition.</p>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span class="flex items-center gap-1 text-slate-700 font-medium">
+                <span class="material-symbols-outlined text-[15px] text-blue-800">engineering</span> Estate & Warden
+              </span>
+              <span class="text-slate-500">Assigned Yesterday</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Resolved -->
+          <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs opacity-90">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md font-mono">#MVM-GR-8790</span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="material-symbols-outlined text-[13px] filled">check</span> Resolved
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm">Confidential: Library Study Zone Disturbance & Mentorship</h4>
+            <p class="text-xs text-slate-500 mt-1">Grievance reviewed by Student Counselor. Resolution slip issued on Oct 16.</p>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <span class="text-emerald-700 font-semibold">Feedback Given: 5/5 ★</span>
+              <a href="javascript:void(0)" onclick="alert('Downloading Resolution Slip #8790 PDF')" class="text-blue-700 font-semibold underline">Download Slip</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regulatory Guarantee Card -->
+        <div class="bg-blue-50/70 rounded-2xl p-4 border border-blue-100 space-y-2.5 text-xs">
+          <div class="flex items-center gap-2 text-blue-900 font-bold">
+            <span class="material-symbols-outlined text-base">verified_user</span>
+            <span>Student Rights Protection Mandate</span>
+          </div>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            All reports are strictly monitored in accordance with National Higher Education Grievance Redressal norms. Unresolved issues escalate automatically to the University Ombudsman after 7 working days.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- VIEW 2: LODGE A COMPLAINT FORM                 -->
+      <!-- ============================================== -->
+      <section id="view-lodge" class="hidden p-4 space-y-4">
+        <!-- Progress Steps -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-2.5">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-blue-900">Step 1 of 3: Incident Details</span>
+            <span class="text-slate-400 font-medium">Next: Supporting Evidence</span>
+          </div>
+          <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-blue-600 h-full w-1/3 rounded-full"></div>
+          </div>
+          <div class="flex justify-between text-[11px] text-slate-500 pt-1">
+            <span class="font-semibold text-blue-900">1. Classification</span>
+            <span>2. Evidence</span>
+            <span>3. Redressal</span>
+          </div>
+        </div>
+
+        <!-- Confidentiality Toggle Banner -->
+        <div class="bg-white rounded-2xl p-4 border border-blue-200 shadow-xs flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-xl">policy</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <label for="confidentialToggle" class="text-xs font-bold text-slate-900 cursor-pointer">
+                Submit Anonymously / Protected
+              </label>
+              <input type="checkbox" id="confidentialToggle" class="w-4 h-4 accent-blue-700 cursor-pointer">
+            </div>
+            <p class="text-[11px] text-slate-500 mt-1 leading-normal">
+              Your name and student roll number will be masked from departmental staff and visible solely to the Grievance Chairperson.
+            </p>
+          </div>
+        </div>
+
+        <!-- The Complaint Form -->
+        <form id="grievanceForm" onsubmit="handleFormSubmit(event)" class="bg-white rounded-2xl p-4.5 p-4 border border-slate-200 shadow-xs space-y-3.5">
+          <!-- Classification -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Concern Nature / Classification <span class="text-rose-500">*</span></label>
+            <select required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition">
+              <option value="" disabled selected>Select category...</option>
+              <option value="academic">Academic & Internal Assessment</option>
+              <option value="personal">Personal Student Welfare & Harassment</option>
+              <option value="hostel">Hostel & Campus Facilities</option>
+              <option value="accounts">Accounts & Fee Receipts</option>
+              <option value="library">Library & IT Infrastructure</option>
+            </select>
+          </div>
+
+          <!-- Target Department -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Target Department / Responsible Wing <span class="text-rose-500">*</span></label>
+            <select required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition">
+              <option value="welfare" selected>Department of Student Welfare & Grievance Cell</option>
+              <option value="dean">Academic Dean Office (Computer Science)</option>
+              <option value="warden">Hostel Management & Estate Wing</option>
+              <option value="admin">College Registrar / Admin</option>
+            </select>
+          </div>
+
+          <!-- Incident Date & Location -->
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Incident Date <span class="text-rose-500">*</span></label>
+              <input type="date" required value="2024-10-24" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Location / Room <span class="text-rose-500">*</span></label>
+              <input type="text" placeholder="e.g. Lab 3 / Library" required value="CS Dept - Software Lab II" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white">
+            </div>
+          </div>
+
+          <!-- Subject Line -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Grievance Subject Line <span class="text-rose-500">*</span></label>
+            <input type="text" placeholder="Brief summary of your grievance" required value="Discrepancy in Internal Assessment & Lab Marks" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white">
+          </div>
+
+          <!-- Detailed Statement -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="text-xs font-bold text-slate-700">Detailed Statement <span class="text-rose-500">*</span></label>
+              <span id="charCount" class="text-[10px] text-slate-400 font-medium">324 / 1000 characters</span>
+            </div>
+            <textarea rows="4" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white leading-relaxed">I am lodging this concern with the Student Welfare Cell regarding repeated scheduling irregularities and unresolved mentorship oversight during the previous laboratory sessions. Despite communicating with the department evaluator, my practical submission logbook marks have not been reconciled in the college ERP portal.</textarea>
+          </div>
+
+          <!-- Urgency & Severity Tiers -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">Urgency & Severity Tier</label>
+            <div class="space-y-1.5">
+              <label class="flex items-center gap-2.5 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 text-xs">
+                <input type="radio" name="urgency" value="normal" class="accent-blue-600">
+                <div>
+                  <span class="font-bold text-slate-800">Normal</span>
+                  <span class="text-slate-500 text-[11px] block">General inquiry or maintenance (5-7 business days)</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-2.5 p-2 rounded-xl border border-blue-300 bg-blue-50/50 cursor-pointer text-xs">
+                <input type="radio" name="urgency" value="urgent" checked class="accent-blue-600">
+                <div>
+                  <span class="font-bold text-blue-900">Urgent (Time Sensitive)</span>
+                  <span class="text-blue-700 text-[11px] block">Affects semester marks or active exam admission (48-72h)</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-2.5 p-2 rounded-xl border border-rose-200 cursor-pointer hover:bg-rose-50/40 text-xs">
+                <input type="radio" name="urgency" value="critical" class="accent-rose-600">
+                <div>
+                  <span class="font-bold text-rose-800">Critical / Harassment</span>
+                  <span class="text-rose-600 text-[11px] block">Safety violation or immediate harassment review (< 24h)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Evidence Attachments -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Supporting Evidence / Photos</label>
+            <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:bg-slate-50 transition cursor-pointer">
+              <span class="material-symbols-outlined text-slate-400 text-3xl">cloud_upload</span>
+              <p class="text-xs font-bold text-slate-700 mt-1">Upload notices, roll sheets or marksheets</p>
+              <p class="text-[10px] text-slate-400">PDF, JPG, PNG up to 10MB</p>
+            </div>
+            <!-- Uploaded file chip -->
+            <div class="mt-2 flex items-center justify-between p-2 rounded-lg bg-slate-100 text-xs text-slate-700">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-rose-600 text-sm">picture_as_pdf</span>
+                <span class="font-medium truncate max-w-[200px]">lab_marks_receipt.pdf (1.4 MB)</span>
+              </div>
+              <button type="button" class="text-slate-400 hover:text-slate-600 text-sm">✕</button>
+            </div>
+          </div>
+
+          <!-- Code of conduct agreement -->
+          <div class="flex items-start gap-2 pt-1">
+            <input type="checkbox" id="terms" required checked class="mt-0.5 w-4 h-4 accent-blue-700">
+            <label for="terms" class="text-[11px] text-slate-600 leading-tight">
+              I affirm that the statements provided are authentic and adhere to the <span class="font-bold text-slate-800">MVM College Student Code of Conduct</span>.
+            </label>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="pt-2 flex gap-2">
+            <button type="button" onclick="switchView('dashboard')" class="flex-1 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition">
+              Cancel / Draft
+            </button>
+            <button type="submit" class="flex-1 py-2.5 rounded-xl bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition">
+              Submit Concern <span class="material-symbols-outlined text-sm">send</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- VIEW 3: TRACK STATUS & TIMELINE               -->
+      <!-- ============================================== -->
+      <section id="view-track" class="hidden p-4 space-y-4">
+        <!-- Ticket Header Banner -->
+        <div class="bg-white rounded-2xl p-4 border border-blue-200 shadow-xs space-y-2">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-black font-mono text-blue-900 bg-blue-50 px-2.5 py-0.5 rounded-md">#MVM-GR-8842</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">High Priority</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm mt-1.5">Discrepancy in Internal Assessment & Lab Marks</h3>
+            </div>
+            <button onclick="window.print()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100" title="Print Docket">
+              <span class="material-symbols-outlined text-lg">print</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 text-[11px] text-slate-500 border-t border-slate-100">
+            <div>
+              <span class="block text-slate-400">Lodged By:</span>
+              <span class="font-semibold text-slate-700">Rahul Sharma (#22BCS041)</span>
+            </div>
+            <div>
+              <span class="block text-slate-400">Filing Date:</span>
+              <span class="font-semibold text-slate-700">Oct 24, 2024 (10:15 AM)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLA Progress Badge -->
+        <div class="bg-blue-900 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold tracking-wider uppercase text-blue-200 block">Current Stage</span>
+            <h4 class="font-bold text-sm">Under Review by Department Head</h4>
+            <p class="text-xs text-blue-100/80 mt-0.5">Assigned to: Dr. K. Ramanathan (HOD CS)</p>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-semibold text-blue-200 block">Expected Resolution</span>
+            <span class="text-xs font-black text-amber-300">Within 3 Days (Oct 27)</span>
+          </div>
+        </div>
+
+        <!-- 5-Step Timeline Audit Trail -->
+        <div class="bg-white rounded-2xl p-4.5 p-4 border border-slate-200 shadow-xs">
+          <div class="flex justify-between items-center mb-3">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Investigation Audit Trail</h4>
+            <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Step 3 of 5 Active</span>
+          </div>
+
+          <div class="space-y-4 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-200">
+            <!-- Step 1: Completed -->
+            <div class="relative flex items-start gap-3 pl-1">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 z-10 ring-4 ring-white">
+                <span class="material-symbols-outlined text-[14px]">check</span>
+              </div>
+              <div class="flex-1 bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
+                <div class="flex justify-between">
+                  <span class="font-bold text-slate-900">Complaint Submitted</span>
+                  <span class="text-[10px] text-slate-400">Oct 24, 10:15 AM</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Automated ticket generated and routed to Academic Welfare Committee.</p>
+              </div>
+            </div>
+
+            <!-- Step 2: Completed -->
+            <div class="relative flex items-start gap-3 pl-1">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 z-10 ring-4 ring-white">
+                <span class="material-symbols-outlined text-[14px]">check</span>
+              </div>
+              <div class="flex-1 bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
+                <div class="flex justify-between">
+                  <span class="font-bold text-slate-900">Assigned & Acknowledged</span>
+                  <span class="text-[10px] text-slate-400">Oct 24, 02:30 PM</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Assigned to Dr. K. Ramanathan for primary verification.</p>
+              </div>
+            </div>
+
+            <!-- Step 3: Current In Progress -->
+            <div class="relative flex items-start gap-3 pl-1">
+              <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 z-10 ring-4 ring-white animate-pulse">
+                <span class="material-symbols-outlined text-[14px]">sync</span>
+              </div>
+              <div class="flex-1 bg-blue-50/80 p-2.5 rounded-xl border border-blue-200 text-xs">
+                <div class="flex justify-between">
+                  <span class="font-bold text-blue-950">Internal Review & Verification</span>
+                  <span class="text-[10px] font-bold text-blue-700">Oct 25, 09:00 AM</span>
+                </div>
+                <p class="text-[11px] text-blue-900 mt-0.5 leading-relaxed">
+                  Faculty subject coordinator consulted. Answer scripts retrieved from repository for re-evaluation against rubric benchmarks.
+                </p>
+                <span class="inline-block mt-1.5 text-[10px] font-bold text-blue-800 bg-white px-2 py-0.5 rounded shadow-xs">
+                  Active Assessor: Dept Evaluation Cell
+                </span>
+              </div>
+            </div>
+
+            <!-- Step 4: Upcoming -->
+            <div class="relative flex items-start gap-3 pl-1 opacity-60">
+              <div class="w-6 h-6 rounded-full bg-slate-300 text-white flex items-center justify-center shrink-0 z-10 ring-4 ring-white">
+                <span class="material-symbols-outlined text-[14px]">person</span>
+              </div>
+              <div class="flex-1 bg-white p-2.5 rounded-xl border border-slate-200 text-xs">
+                <div class="flex justify-between">
+                  <span class="font-semibold text-slate-700">Hearing / Discussion with Student</span>
+                  <span class="text-[10px] text-slate-400">Pending</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">One-on-one reconciliation session if marks discrepancy exceeds designated moderation margin.</p>
+              </div>
+            </div>
+
+            <!-- Step 5: Final Resolution -->
+            <div class="relative flex items-start gap-3 pl-1 opacity-60">
+              <div class="w-6 h-6 rounded-full bg-slate-300 text-white flex items-center justify-center shrink-0 z-10 ring-4 ring-white">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+              </div>
+              <div class="flex-1 bg-white p-2.5 rounded-xl border border-slate-200 text-xs">
+                <div class="flex justify-between">
+                  <span class="font-semibold text-slate-700">Resolution & Closure Slip</span>
+                  <span class="text-[10px] text-slate-400">Final Stage</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Updated marksheet publication in ERP portal and grievance sign-off document issuance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Remarks / Memo -->
+        <div class="bg-white rounded-2xl p-4 border border-blue-200 shadow-xs space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-900 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-blue-700 text-sm">assignment</span> Official Remarks & Memo
+            </span>
+            <span class="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full text-[10px]">Verified Seal</span>
+          </div>
+          <blockquote class="text-xs italic text-slate-700 bg-slate-50 p-3 rounded-xl border-l-4 border-blue-700 leading-relaxed">
+            "The lab examination attendance record and internal logbook have been reconciled with Assistant Prof. V. Mehta. Grade sheet revision recommendation has been submitted to the Academic Dean's office for authorized system entry."
+          </blockquote>
+          <div class="text-[11px] text-slate-500 flex justify-between items-center pt-1">
+            <span class="font-bold text-slate-800">Dr. K. Ramanathan (HOD, CS Dept)</span>
+            <span>Recorded Oct 25</span>
+          </div>
+        </div>
+
+        <!-- Student Supplemental Response Box -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-2.5">
+          <h4 class="font-bold text-xs text-slate-800">Add Follow-up Evidence or Remarks</h4>
+          <textarea placeholder="Provide extra context, roll sheet photos, or lab assignment receipts..." class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white"></textarea>
+          <div class="flex gap-2">
+            <button onclick="alert('Evidence uploaded successfully.')" class="flex-1 py-2 rounded-xl border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-50 flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-sm">attach_file</span> Add Evidence
+            </button>
+            <button onclick="alert('Follow-up note submitted.')" class="flex-1 py-2 rounded-xl bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold flex items-center justify-center gap-1 shadow-sm">
+              <span class="material-symbols-outlined text-sm">send</span> Submit Note
+            </button>
+          </div>
+          <button onclick="alert('Escalation request logged with the Academic Ombudsman desk.')" class="w-full mt-1 py-2 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold hover:bg-rose-100 transition flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm">bolt</span> Request Expedited Review (SLA Escalation)
+          </button>
+        </div>
+
+        <!-- Ombudsman Escalation Desk Card -->
+        <div class="bg-slate-100 rounded-2xl p-4 text-xs space-y-1.5 border border-slate-200">
+          <span class="font-bold text-slate-800 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-slate-600 text-sm">support_agent</span> Ombudsman Contact Desk
+          </span>
+          <p class="text-slate-600 text-[11px]">If unresolved past SLA deadline or if fair process is hindered, contact MVM College Grievance Redressal Officer directly:</p>
+          <div class="pt-1 flex justify-between font-semibold text-blue-900 text-[11px]">
+            <span>📞 044-2817-8820</span>
+            <span>✉️ ombudsman@mvmcollege.edu</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- VIEW 4: STUDENT PROFILE / SETTINGS             -->
+      <!-- ============================================== -->
+      <section id="view-profile" class="hidden p-4 space-y-4">
+        <div class="bg-white rounded-2xl p-4 text-center border border-slate-200 shadow-xs">
+          <div class="w-20 h-20 mx-auto rounded-full bg-blue-100 text-blue-900 flex items-center justify-center font-bold text-2xl border-2 border-blue-500 shadow-sm mb-3">
+            RS
+          </div>
+          <h3 class="font-bold text-slate-900 text-base">Rahul Sharma</h3>
+          <p class="text-xs text-blue-800 font-semibold">Roll No: MVM-2023-CS042</p>
+          <p class="text-xs text-slate-500 mt-0.5">B.Sc Computer Science • 2nd Year (Semester IV)</p>
+          <span class="inline-block mt-2.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+            Active Verified Student
+          </span>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-3 text-xs">
+          <h4 class="font-bold uppercase tracking-wider text-slate-500 text-[11px]">Account & Academic Info</h4>
+          <div class="flex justify-between py-1.5 border-b border-slate-100">
+            <span class="text-slate-500">College Email</span>
+            <span class="font-semibold text-slate-800">r.sharma23@mvmcollege.edu</span>
+          </div>
+          <div class="flex justify-between py-1.5 border-b border-slate-100">
+            <span class="text-slate-500">Contact Number</span>
+            <span class="font-semibold text-slate-800">+91 98765 43210</span>
+          </div>
+          <div class="flex justify-between py-1.5 border-b border-slate-100">
+            <span class="text-slate-500">Hostel Resident</span>
+            <span class="font-semibold text-slate-800">Hostel Block-B (Room 214)</span>
+          </div>
+          <div class="flex justify-between py-1.5">
+            <span class="text-slate-500">Faculty Advisor</span>
+            <span class="font-semibold text-slate-800">Prof. A. Sridhar (CS Dept)</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-2 text-xs">
+          <h4 class="font-bold uppercase tracking-wider text-slate-500 text-[11px]">Privacy & Support</h4>
+          <button onclick="alert('Identity anonymity settings updated.')" class="w-full py-2.5 text-left font-medium text-slate-700 flex justify-between items-center hover:text-blue-700">
+            <span>Confidentiality & Privacy Preferences</span>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+          </button>
+          <button onclick="alert('Viewing Redressal Guidelines PDF')" class="w-full py-2.5 text-left font-medium text-slate-700 flex justify-between items-center hover:text-blue-700 border-t border-slate-100">
+            <span>UGC Grievance Redressal Regulations (2023)</span>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+          </button>
+          <button onclick="alert('Session logged out.')" class="w-full py-2 text-center font-bold text-rose-600 bg-rose-50 rounded-xl hover:bg-rose-100 transition mt-2">
+            Sign Out
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Persistent) -->
+    <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-3 py-2 flex justify-around items-center z-40 shadow-lg">
+      <!-- Nav 1: Dashboard -->
+      <button onclick="switchView('dashboard')" id="nav-dashboard" class="flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-blue-900 bg-blue-50 font-bold scale-100">
+        <span class="material-symbols-outlined text-xl filled">home</span>
+        <span class="text-[10px] mt-0.5">Home</span>
+      </button>
+
+      <!-- Nav 2: Lodge Complaint -->
+      <button onclick="switchView('lodge')" id="nav-lodge" class="flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-slate-500 hover:text-blue-900">
+        <span class="material-symbols-outlined text-xl">add_circle</span>
+        <span class="text-[10px] mt-0.5">New Concern</span>
+      </button>
+
+      <!-- Nav 3: Track Status -->
+      <button onclick="switchView('track')" id="nav-track" class="flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-slate-500 hover:text-blue-900">
+        <span class="material-symbols-outlined text-xl">track_changes</span>
+        <span class="text-[10px] mt-0.5">Track Status</span>
+      </button>
+
+      <!-- Nav 4: Profile -->
+      <button onclick="switchView('profile')" id="nav-profile" class="flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-slate-500 hover:text-blue-900">
+        <span class="material-symbols-outlined text-xl">person</span>
+        <span class="text-[10px] mt-0.5">Profile</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Interactive State Script -->
+  <script>
+    function switchView(viewName) {
+      // List of views
+      const views = ['dashboard', 'lodge', 'track', 'profile'];
+      
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        const navEl = document.getElementById(`nav-${v}`);
+        
+        if (v === viewName) {
+          el.classList.remove('hidden');
+          // Active Nav Styling
+          navEl.className = "flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-blue-900 bg-blue-50 font-bold";
+          const icon = navEl.querySelector('.material-symbols-outlined');
+          if (icon) icon.classList.add('filled');
+        } else {
+          el.classList.add('hidden');
+          // Inactive Nav Styling
+          navEl.className = "flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all duration-150 text-slate-500 hover:text-blue-900";
+          const icon = navEl.querySelector('.material-symbols-outlined');
+          if (icon) icon.classList.remove('filled');
+        }
+      });
+
+      // Update Header Back button & Subtitle based on active view
+      const backBtn = document.getElementById('backBtn');
+      const subtitle = document.getElementById('topBarSubtitle');
+
+      if (viewName === 'dashboard') {
+        backBtn.classList.add('hidden');
+        subtitle.innerText = "MVM College • Student Redressal";
+      } else if (viewName === 'lodge') {
+        backBtn.classList.remove('hidden');
+        subtitle.innerText = "Lodge a Concern";
+      } else if (viewName === 'track') {
+        backBtn.classList.remove('hidden');
+        subtitle.innerText = "Audit Trail • Docket #8842";
+      } else if (viewName === 'profile') {
+        backBtn.classList.remove('hidden');
+        subtitle.innerText = "Student Profile & Security";
+      }
+
+      // Scroll view back to top
+      document.querySelector('main').scrollTop = 0;
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert("🎉 Grievance Docket Registered!\n\nYour complaint has been encrypted and assigned ticket reference #MVM-GR-8843. You can now monitor investigation milestones in real-time under 'Track Status'.");
+      switchView('track');
+    }
+  </script>
+</body>
+</html>
